@@ -1,0 +1,56 @@
+Se indica en el ejercicio que los id de las dos apis coinciden puedo verificarlos lanazando estas dos peticiones por el plugin de api intslado en visual estudio code.
+
+https://swapi.dev/api/starships/10
+https://starwars-visualguide.com/assets/img/starships/10.jpg
+
+https://starwars-visualguide.com/assets/img/starships/9.jpg
+https://swapi.dev/api/starships/9
+
+
+Lista de starships
+https://swapi.dev/api/starships
+
+
+Patron para buscar los elementos en la cadena shipPromise
+{([^}]*)
+{ "name"([^}]*)
+
+<form novalidate : la propiedad no validate es para desactivar las validaciones propias de html sobre los input
+ action="#": el # es para que no vaya a ningun lado el envio de los datos
+
+
+Tal como teneia montado los estilos de register no se aplicaban a los input de Login , ya que no son padre e hijo sino hermanos.
+
+Por lo que he cambiado los estilos al padre en comun que es el navbar.
+
+
+Cambio de ruta dentro de codigo, por path o por nombre
+   this.$router.push({path: '/'});
+      this.$router.push({name:'Home'});
+
+
+      //  "name": "Chewbacca", 
+//     "height": "228", 
+//     "mass": "112", 
+//     "hair_color": "brown", 
+//     "skin_color": "unknown", 
+//     "eye_color": "blue", 
+//     "birth_year": "200BBY", 
+//     "gender": "male", 
+
+ // .get(`https://swapi.dev/api/starships?page=${state.state.page}`)
+
+
+ Para agregar fontawesome en vue o vuex , agrego en public/index.html el its que me  da la cuenta de fontawesome.
+
+Para agregar fuentes de google font debo agregar el enlace en public/index.html
+
+ Para usar mnormalize debo instalarlo
+ npm install                 normalize.css
+
+
+
+herramienta para obtener el color de una parte de una imagen hay una herramienta online y un pluging de chrome
+ColorPick Eyedropper
+
+Este funciona con imagenes online (tengo que arrastrala ) o paginas web que tienen inscrustada la imagen.
