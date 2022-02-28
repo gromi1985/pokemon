@@ -2,7 +2,7 @@
     <footer class="container-fluid mainContainerF">
         <div class="footer-content">
             <div class="social-link flex-column justify-content-center">
-                <h3 class="text-center" >Follow Star Wars</h3>
+                <h3 class="text-center" >Follow Pokemon</h3>
                   <RedesSociales/>
             </div>
         <section id="help">

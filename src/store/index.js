@@ -8,6 +8,8 @@ export default createStore({
     infoCurrent: [],//Array de unico Elemento Vacio
     page: 1,
     itemDetailsSelect: '',
+    dataPerson:{},
+    flagUser:false,
   },
   mutations: {
     //flagUser: true si el usuario existe en el localstorage
@@ -29,7 +31,13 @@ export default createStore({
 
     SET_ITEMPROPERTY: function(state,property,value){
       Object.defineProperty(state.infoCurrent, property, value)
-    }
+    },
+    
+    SET_USER:(state,dataUser)=>{state.dataPerson  = Object.assign({} , dataUser);},
+   
+    SET_FLAG_USER:function(state,newValue){
+      state.flagUser = newValue;
+    },
   },
   actions: {
     GET_LISTPOKES: (state) => {
@@ -120,9 +128,7 @@ export default createStore({
         })
         .catch(error => console.log(error));
     },
-    
-
-
+   
     GET_ITEMSHIP: (state, id) => {
       axios
         .get(`https://pokeapi.co/api/v2/pokemon/${id}/`)
@@ -156,6 +162,65 @@ export default createStore({
           }
         })
         .catch(error => console.log(error));
+    },
+
+    LOGIN_USER:function(state,dataUser){
+    console.log("LOGIN_USER....");
+    let userLocal='';
+    if (localStorage.length > 0)
+    {
+       userLocal = localStorage.getItem('usuario');
+       
+       if(userLocal != null){
+         console.log("Hay localstorage....")
+        if((dataUser.email === JSON.parse(userLocal).email) &&
+          (dataUser.password === JSON.parse(userLocal).password)){
+            localStorage.setItem("usuario", JSON.stringify(dataUser));
+            state.commit("SET_USER",dataUser);
+            state.commit("SET_FLAG_USER",true);
+            //state.state.flagUser = true;
+            console.log('El usuario es correcto');
+          }
+          else {
+            console.log("Usuario no registrado...");
+            state.commit("SET_FLAG_USER",false);
+           // state.state.flagUser = false;
+          }
+       }
+       else{  
+        console.log('El usuario no registrado..');
+        state.commit("SET_FLAG_USER",false);
+
+        // state.state.flagUser = false;
+       }
+
+     }
+    
+    },
+    REGISTERUSER:function(state,dataUser){
+    console.log('REGISTERUSER');
+    let userLocal='';
+    if (localStorage.length > 0)
+    {
+       userLocal = localStorage.getItem('usuario');
+       if(userLocal != null){
+          if((dataUser.email === JSON.parse(userLocal).email) &&
+            (dataUser.password === JSON.parse(userLocal).password)){
+              dataUser={};
+              console.log('Usuario ya registrado');
+              state.commit("SET_USER",dataUser);
+            }
+            else{
+              console.log(dataUser);
+              localStorage.setItem("usuario", JSON.stringify(dataUser));
+              state.commit("SET_USER",dataUser);
+            }
+          }
+        else{
+            localStorage.setItem("usuario", JSON.stringify(dataUser));
+            state.commit("SET_USER",dataUser);
+        }
+    }
     },
   },
   getters: {

@@ -1,7 +1,7 @@
 <template>
   <div id="principalPage">
     <div class="w-100">
-    <p >ALL OF YOUR POKES BALLS FAVORITES NOW STREAMING ON DISNEY+</p>
+    <p >ALL OF YOUR POKES BALLS FAVORITES HERE...</p>
     </div>
     <img id="logo" alt="start Image" src="../assets/pokeball-pokemon-svgrepo-com.svg">
     <Footer></Footer>

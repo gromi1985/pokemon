@@ -1,7 +1,12 @@
 <template>
     <div class="container-fluid " id="headCustom">  
-      <nav id='menu' class="navbar justify-content-center">
+      <nav id='menu' class="navbar justify-content-around">
               <p>Pokedex</p>
+              <div id="registerUser" class=" d-flex justify-content-end align-items-center">
+                <router-link class = "nav-link" to = "/login"> LOGIN </router-link>
+                <span>//</span>
+                 <router-link class = "nav-link" to = "/register"> SIGN UP </router-link>
+             </div>
     </nav>
   </div> 
 
@@ -16,11 +21,6 @@ export default {
     brand:'Prueba'
    }
  },
- methods: {
-         goHome(){
-          this.$router.push({ path: 'home'})
-        }
- }
 }
 </script>
 
@@ -80,5 +80,6 @@ img{
   color:rgb(153, 153, 153);;
 }
 /**Estilos de los Input para Login y Register */
+
 
 </style>

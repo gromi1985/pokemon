@@ -2,12 +2,14 @@
 <div id="all-piece">
   <NavBar></NavBar>
   <div id="nav" class="d-flex flex-row justify-content-center border-y">
-     <div class="">
-      <router-link to="/">HOME</router-link> 
+    <div class="border-x">
+      <router-link v-if='flagUser'  to="/">HOME</router-link>
+       <router-link v-else to="/Login" >HOME</router-link>
     </div>
     <div class="">
       <router-link to="/about">ABOUT</router-link> 
     </div>
+
   </div>
   
   <div class="container-fluid px-0">
@@ -21,13 +23,16 @@
 <script>
 // @ is an alias to /src
 import NavBar from "@/components/NavBar.vue";
-
+import { mapState} from  'vuex'
 
 
 export default {
   name: "App",
   components: {
     NavBar
+  },
+  computed: {
+    ...mapState(['flagUser']),
   },
   
 };
@@ -77,6 +82,9 @@ export default {
 .border-x{
   border-left: 1px solid gray;
   border-right: 1px solid gray;
+}
+#nav{
+  margin-bottom:40px;
 }
 
 
