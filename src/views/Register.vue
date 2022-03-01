@@ -52,7 +52,7 @@
                     tipo='1'
                     ></InputElement>
 
-       <span class="textDisplayName">
+       <span class="textDisplayName termAccept">
         New display names need to be approved. Until then, you'll see a
         temporary display name.
       </span>
@@ -75,7 +75,7 @@
 
       <div class="text-check">
         <label>
-          <input class="me-1" type="checkbox" v-model="offers" /> Yes! I would
+          <input class="me-1 termAccept" type="checkbox" v-model="offers" /> Yes! I would
           like to receive by email special offers and updates about Lucasfilm
           Ltd. and other products and services from The Walt Disney Family of
           Companies.
@@ -90,7 +90,7 @@
       <p class="termAccept">My home country/region: Spain. input.</p>
       <input class="h-element w-100" type="submit" value="Create Account" />
 
-      <p>
+      <p class="termAccept">
         <a href="" @click="goLogin">Already have an account? Sign In</a>
       </p>
     </form>
@@ -214,11 +214,8 @@ export default {
   margin-top: 100px;
   padding-bottom: 40px;
   background-color: #181818;
-  /* min-width: 440px; */
-  /* min-height: 100vh; */
-   /* width: 40%;  */
   margin: 0 auto;
-  font-size: 12px;
+  font-size:1.2rem;
   padding:40px;
 }
 #register * {
@@ -234,10 +231,6 @@ form > * {
   height: 60px;
 }
 
-/* #register > div > form > *,
-#register .text-check {
-  width: 350px;
-} */
 
 #register .text-check,
 .termAccept {
@@ -247,6 +240,7 @@ form > * {
   padding-left: 0px;
   padding-right: 0px;
   widows: 100%;
+  font-size:.7rem;
 }
 
 
@@ -316,7 +310,6 @@ form > * {
 /*Evento Focus*/
 .elementItem>label>input.focus{
   background: #abb0b8;
-  color:#edd700;
 }
 .elementItem>label.focus{
  color:#abb0b8;
@@ -331,13 +324,14 @@ form > * {
   border-color: red;
 }
 
-.blur,
-.oninput,
+.blur:not(input),
+.oninput:not(input),
 .errorLogin {
   border:none;
   color:red;
   background-color:#181818;
   display:block;
+  font-size:1rem;
 
 }
 
@@ -351,7 +345,7 @@ form > * {
 }
 
 .elementItem>label>input.oninput{
-  color:#edd700;
+  /* color:#edd700; */
   background-color:#abb0b8; 
 }
 </style>

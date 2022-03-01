@@ -69,7 +69,7 @@ export default {
       this.validateFields(this.tipo);
     },
     treatmentFlags:function(){
-      this.msgBlur='Please enter your ' + `${this.headTitle}`
+      // this.msgBlur='Please enter your ' + `${this.headTitle}`
       this.esActivateFocus = this.flagEvents.esActivateFocus; 
       if(!this.cadena.length){ //Error campo vacio
             this.esActivateBlur = this.flagEvents.esActivateBlur;
@@ -126,4 +126,5 @@ export default {
   }
 
 </script>
+
 

@@ -32,7 +32,7 @@
         ></InputElement>
 
         <input class="h-element" type="submit" value="Sign In" />
-        <span class="errorLogin text-start" 
+        <span  class="errorLogin text-start" 
                v-if="!auth && esActivateError">{{msgError}}</span>
 
         <div id="remember-container">
@@ -118,12 +118,9 @@ export default {
     },
      emailValidatePattern(cadena)
     {
-         console.log('emailValidatePattern');
-
          let tuEmail = cadena.toString()
          const patron = /^[\w]+@{1}[\w]+\.+[a-z]{2,3}$/
          let respuesta = patron.test(tuEmail)
-         console.log('Respuesta:' + respuesta);
          return respuesta;
     },
   },
@@ -144,7 +141,7 @@ export default {
   min-height: 23rem;
   width: 410px;
   margin: 0 auto;
-  font-size: 12px;
+  font-size: 1.2rem;
   min-height: 100vh;
 }
 
@@ -224,7 +221,6 @@ form > * {
 /*FIELD*/
 .elementItem > label > input.focus {
   background: #abb0b8;
-  color: #edd700;
 }
 .elementItem > label.focus {
   color: #abb0b8;
@@ -238,13 +234,17 @@ form > * {
   border-color: red;
 }
 
-.blur,
-.oninput,
+ .blur:not(input),
+.oninput:not(input), 
 .errorLogin {
   border: none;
-  color: red;
+   color: red; 
   background-color: #181818;
   display: block;
+   font-size:1rem;
+} 
+.errorLogin{
+  font-size:1rem;
 }
 
 .elementItem .blur {
@@ -255,5 +255,6 @@ form > * {
 }
 span#remember{
  color: #edd700;
+ font-size:.8rem;
 }
 </style>

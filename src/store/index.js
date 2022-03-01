@@ -67,39 +67,38 @@ const store = new Vuex.Store({
             state.commit("ADD_PAGE", state.state.page);
             console.log('state.state.page: ' + state.state.page)
             let urlInfo1 = response.data.results;
-            console.log(urlInfo1);
+            console.log("urlInfo1:" + urlInfo1);
 
             for (let e in urlInfo1) {
 
               id = urlInfo1[e].url.match(patternRegex)[0];
               //  itemPoke.name = urlInfo1[e].name;
               // console.log("1.- Iem:" + itemPoke.name);
-              console.log(id);
+              console.log('id-1 :' + id);
 
-
+               let itemPoke = {
+                urlInitId: id
+               }
               if (id) {
                 axios
                   .get(`https://pokeapi.co/api/v2/pokemon/${id}`)
                   .then(response => {
                     if (response.status == 200) {
-                      console.log("2.-Iem:" + response.data);
                       let urlInfo2 = response.data;
-                      console.log(urlInfo2);
 
-                      const itemPoke = {
-                        urlInitId: id,
+                      itemPoke = Object.assign({},
+                        itemPoke,
+                        {                        
                         name: urlInfo2.name,
                         imgUrl: urlInfo2.sprites.other.dream_world.front_default,
                         experience: urlInfo2.base_experience,
                         atack: urlInfo2.stats[1].base_stat,
                         defensa: urlInfo2.stats[2].base_stat,
                         especial: urlInfo2.stats[3].base_stat,
-                      };
+                      });
 
 
-                      console.log('ItemPoke: ' + itemPoke)
-
-                      state.commit("SET_LISTPOKE", itemPoke);
+                     state.commit("SET_LISTPOKE", itemPoke);
                     }
                   })
                   .catch(error => console.log(error));
@@ -111,7 +110,6 @@ const store = new Vuex.Store({
         .catch(error => console.log(error));
        
 
-      console.log("Salgo de GET_LISTPOKES ....")
     },
     GET_ITEMCHARACTER: (state, id) => {
       axios
@@ -119,7 +117,6 @@ const store = new Vuex.Store({
 
         .then(response => {
           if (response.status == 200) {
-            //  let urlInfo2 = response.data;
             let urlInfo2Temp = JSON.stringify(response.data).replace(/"official-/g, '"official_');
             let urlInfo2 = JSON.parse(urlInfo2Temp)
 

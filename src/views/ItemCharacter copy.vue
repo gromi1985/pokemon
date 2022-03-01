@@ -4,23 +4,21 @@
       <div class="row">
         <h1>{{ getItemCurrent.name }}</h1>
       </div>
-      <div id="moreMain" class="row justify-content-center align-items-center flex-wrap">
-        <div id="moreData-1" class="col-10 col-sm-5 col-md-4 col-lg-3">
-          <img :src="getItemCurrent.imgUrl2" />
-         
+      <div id="moreMain" class="d-flex justify-content-center align-items-center flex-wrap">
+          <img class="mx-5 my-5" :src="getItemCurrent.imgUrl2" />
+
+              <div id="moreData">
+
+        <div id="temp" class="d-flex flex-column justify-content-left  ps-3 ">
+          <p class="text-start">Altura: {{ getItemCurrent.altura }}</p>
+          <p class="text-start">Peso: {{ getItemCurrent.peso }}</p>
+          <div class="d-flex ">
+            <TypeColor :types="getItemCurrent.tipo"/>
+          </div>
+          <p class="text-start">Habilidad: {{ getItemCurrent.habilidad }}</p>
+          <p class="text-start">Especie: {{ getItemCurrent.especie }}</p>
+          <div></div>
         </div>
-        <div id="moreData-2" class="col-10 col-sm-5 col-md-4 col-lg-3">
-            <div id="temp" class="d-flex flex-column justify-content-left  ps-3 ">
-              <p class="text-start">Altura: {{ getItemCurrent.altura }}</p>
-              <p class="text-start">Peso: {{ getItemCurrent.peso }}</p>
-              
-              <p class="text-start">Habilidad: {{ getItemCurrent.habilidad }}</p>
-              <p class="text-start">Especie: {{ getItemCurrent.especie }}</p>
-              <div></div>
-            </div>
-             <div class="d-flex ps-3">
-                <TypeColor :types="getItemCurrent.tipo"/>
-           </div>
         </div>
       </div>
     </div>
@@ -62,24 +60,25 @@ export default {
 .infoCharacter{
   background:no-repeat url('../assets/fondo1.jpg');
   background-size:100% 100%;
-  /* height:85vh; */
-  font-size:1.2rem;
+  height:85vh;
+  font-size:1.5rem;
   margin-left:0px;
   margin-right:0px;
   position:relative;
 }
-
 #moreMain{
-  min-height:70vh;
+  height:50vh;
+  margin-right: 0;
+  margin-left: 0;
 }
-/* #moreMain img{
+#moreMain img{
   max-height: 30vh;
   width: 300px;
   
-} */
-/* #temp{
+}
+#temp{
   height: 40%   !important;;
-}  */
+} 
 #moreData>*{
   line-height: 3rem;
 }
@@ -93,24 +92,13 @@ export default {
   margin-left:0px;
 
 }
-#moreData-1>img{
-  width:100%;
-}
 
-@media (max-width: 600px) {
-  /* #infoCharacter,
+@media (max-width: 400px) {
+  #infoCharacter,
     #moreMain{
     height:auto;
-  } */
-  #moreData-1
-  {
-    margin-top:10vh;
-    height:auto;
   }
-  #moreData-2{
-    height:40vh;
-    margin-top:10vh;
-  }
+  
   Footer{
     height:50vh;
     bottom:-50vh;

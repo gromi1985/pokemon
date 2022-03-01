@@ -1,6 +1,6 @@
 <template>
   <div id="templateCard" 
-       class="col-10 col-md-4 col-lg-3  m-3" 
+       class="col-10 col-sm-4 col-lg-3  m-3" 
        v-for = "(item,index) in info" 
        :key="index" 
        @click="DetailCharacter(item.urlInitId)">
@@ -16,22 +16,21 @@
             <h5 class="card-text"> {{item.name}}<span>39</span></h5>
             <p class="card-text">{{item.experience}} Exp</p>
           </div>
-          <div class="card-footer d-flex flex-nowrap justify-content-between">
-            <div class="card-footer-item">
-              <h3 class="text-center mb-0">{{item.atack}}K</h3>
+          <div class="card-footer d-flex flex-column flex-nowrap justify-content-between">
+            <div class="d-flex flex-nowrap values justify-content-around">
+              <p class="mb-0 text-dark">{{item.atack}}K</p>
+              <p  class="mb-0 text-dark">{{item.especial}}K</p>
+              <p class="mb-0 text-dark">{{item.defensa}}K</p> 
+             </div>
+            <div class="d-flex flex-nowrap tags justify-content-around">
               <p class="p-0 m-0 text-dark">Ataque</p>
-            </div>
-            <div class="card-footer-item ">
-              <h3  class="mb-0">{{item.especial}}K</h3>
               <p class="p-0 m-0 text-dark">Especial</p>
-            </div>
-            <div class="card-footer-item ">
-              <h3 class="mb-0">{{item.defensa}}K</h3>
               <p class="p-0 m-0 text-dark">Defensa</p>
+            </div>
+             
             </div>
           </div>
           <!-- <a id="whereGo" href="#" class="btn btn-primary">Go somewhere</a> -->
-        </div>
   </div>
 </template>
 
@@ -107,7 +106,7 @@ export default {
 #mainCard {
   font-family: "Kumbh Sans", sans-serif;
   box-sizing: border-box;
-  height: 35vh;
+  /* height: 35vh; */
   font-size: 62.5%;
   background: white;
   border-radius: 1rem;
@@ -122,7 +121,7 @@ export default {
 
 .imgCard-2 {
   width: 55%;
-  height: 9vh;
+  height: 20vh;
   /* border: 3px solid rgb(182, 182, 185); */
   border-radius: 50%;
   margin-top: -5.5vh;
@@ -130,7 +129,7 @@ export default {
 }
 h5 {
   margin-top: 1rem;
-  font-size: 1.4rem;
+  font-size: 1.2rem;
   text-transform: capitalize;
  
 }
@@ -155,7 +154,7 @@ div.card-body{
     border-bottom: 1px solid rgba(153,153,153,0.383)
 }
 .card-footer{
-    height:6vh;
+    /* height:6vh; */
     padding-bottom: .4rem;;
 }
 
@@ -164,5 +163,12 @@ div.card-body{
 }
 #whereGo{
   margin-top:-15px;
+}
+.values{
+font-size:.7rem;
+}
+
+.tags{
+font-size:.6rem;
 }
 </style>
