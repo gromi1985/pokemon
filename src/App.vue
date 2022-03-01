@@ -3,7 +3,7 @@
   <NavBar></NavBar>
   <div id="nav" class="d-flex flex-row justify-content-center border-y">
     <div class="border-x">
-      <router-link v-if='flagUser'  to="/">HOME</router-link>
+      <router-link v-if='auth'  to="/">HOME</router-link>
        <router-link v-else to="/Login" >HOME</router-link>
     </div>
     <div class="">
@@ -32,7 +32,7 @@ export default {
     NavBar
   },
   computed: {
-    ...mapState(['flagUser']),
+    ...mapState(['auth']),
   },
   
 };

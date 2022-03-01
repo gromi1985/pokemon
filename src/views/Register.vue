@@ -130,7 +130,6 @@ export default {
         lastName: "",
         email: "",
         password: "",
-        offers: "",
         displayName: "false"
       },
       flagError:false
@@ -173,24 +172,31 @@ export default {
     checkForm(e){
       console.log('checkForm');
        e.preventDefault();
-       this.userRegister.email = document.querySelector('#field-1 input').value;
-       this.userRegister.password = document.querySelector('#field-2 input').value;
-       this.userRegister.firstName = document.querySelector('#field-3 input').value;
-       this.userRegister.lastName = document.querySelector('#field-4 input').value;
-       this.userRegister.offers = document.querySelector('#field-5 input').value;
-       this.userRegister.displayName = false;
+       this.userRegister.firstName = document.querySelector('#field-1 input').value;
+       this.userRegister.lastName = document.querySelector('#field-2 input').value;
+       this.userRegister.email = document.querySelector('#field-3 input').value;
+       this.userRegister.displayName = document.querySelector('#field-4 input').value;
+       this.userRegister.password = document.querySelector('#field-5 input').value;
 
+       console.log('APA' + this.userRegister.firstName);
+       console.log('APA' + this.userRegister.lastName);
+       console.log('APA' + this.userRegister.email);
+       console.log('APA' + this.userRegister.displayName);
+       console.log('APA' + this.userRegister.password);
         if(this.userRegister.email &&
            this.userRegister.password &&
            this.userRegister.firstName &&
            this.userRegister.lastName &&
-           this.userRegister.offers )
+           this.userRegister.displayName ){
+             console.log("Entro por aca ");
            this.flagError = false;
+           }
         else
            this.flagError = true;
 
      if(!this.flagError)
       {
+        console.log("Entramos por aqui");
           this.REGISTERUSER(this.userRegister);
           this.goLogin();
       }

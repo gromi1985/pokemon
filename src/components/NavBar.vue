@@ -2,11 +2,15 @@
     <div class="container-fluid " id="headCustom">  
       <nav id='menu' class="navbar justify-content-around">
               <p>Pokedex</p>
-              <div id="registerUser" class=" d-flex justify-content-end align-items-center">
+              <div v-if="!auth" id="registerUser" class=" d-flex justify-content-end align-items-center">
                 <router-link class = "nav-link" to = "/login"> LOGIN </router-link>
                 <span>//</span>
                  <router-link class = "nav-link" to = "/register"> SIGN UP </router-link>
-             </div>
+              </div>
+              <div v-else>
+                 <span>{{getUserCurrent}}</span>
+                 <router-link @click="onLogout"  class = "nav-link" to = "/about">LOGOUT </router-link>
+              </div>
     </nav>
   </div> 
 
@@ -14,6 +18,8 @@
 </template>
 
 <script>
+import { mapGetters, mapState} from  'vuex'
+
 export default {
   name:'NavBar',
  data(){
@@ -21,6 +27,16 @@ export default {
     brand:'Prueba'
    }
  },
+ computed:{
+    ...mapState(['auth']),
+    ...mapGetters(['getUserCurrent']),
+  },
+  methods:{
+    onLogout() {
+      console.log('onLogout()');
+      this.$store.dispatch("doLogout");
+    }
+  }
 }
 </script>
 

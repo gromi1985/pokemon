@@ -1,18 +1,19 @@
-import { createStore } from 'vuex';
+// import { createStore } from 'vuex';
 import axios from 'axios';
+import Vuex from 'vuex'
 
-
-export default createStore({
+const store = new Vuex.Store({
   state: {
     info: [],//Array Vacio
     infoCurrent: [],//Array de unico Elemento Vacio
     page: 1,
     itemDetailsSelect: '',
     dataPerson:{},
-    flagUser:false,
+    auth:false,
+    username:''
   },
   mutations: {
-    //flagUser: true si el usuario existe en el localstorage
+    //auth: true si el usuario existe en el localstorage
     ADD_PAGE: (state) => {
       state.page += 10;
       console.log(state.page);
@@ -35,10 +36,21 @@ export default createStore({
     
     SET_USER:(state,dataUser)=>{state.dataPerson  = Object.assign({} , dataUser);},
    
-    SET_FLAG_USER:function(state,newValue){
-      state.flagUser = newValue;
+    // SET_FLAG_AUTH:function(state,newValue){
+    //   state.auth = newValue;
+    // },
+    doLogout(state) {
+      state.auth = false;
+      state.username = null;
+    },
+    doLogin(state, username) {
+      state.auth = true;
+      state.username = username;
     },
   },
+  
+  
+  
   actions: {
     GET_LISTPOKES: (state) => {
       console.log('GET_LISTPOKES...')
@@ -163,8 +175,14 @@ export default createStore({
         })
         .catch(error => console.log(error));
     },
+    doLogin({ commit }, username) {
+      commit("doLogin", username);
+    },
+    doLogout({ commit }) {
+      commit("doLogout");
+    },
 
-    LOGIN_USER:function(state,dataUser){
+    LOGIN_USER:function({commit,dispatch},dataUser){
     console.log("LOGIN_USER....");
     let userLocal='';
     if (localStorage.length > 0)
@@ -176,22 +194,22 @@ export default createStore({
         if((dataUser.email === JSON.parse(userLocal).email) &&
           (dataUser.password === JSON.parse(userLocal).password)){
             localStorage.setItem("usuario", JSON.stringify(dataUser));
-            state.commit("SET_USER",dataUser);
-            state.commit("SET_FLAG_USER",true);
-            //state.state.flagUser = true;
+            commit("SET_USER",dataUser);
+            // commit("SET_FLAG_AUTH",true);
+            dispatch('doLogin',dataUser.email);
             console.log('El usuario es correcto');
           }
           else {
             console.log("Usuario no registrado...");
-            state.commit("SET_FLAG_USER",false);
-           // state.state.flagUser = false;
+            // commit("SET_FLAG_AUTH",false);
+           // state.state.auth = false;
           }
        }
        else{  
         console.log('El usuario no registrado..');
-        state.commit("SET_FLAG_USER",false);
+        // commit("SET_FLAG_AUTH",false);
 
-        // state.state.flagUser = false;
+        // state.state.auth = false;
        }
 
      }
@@ -222,10 +240,20 @@ export default createStore({
         }
     }
     },
+
+
+
+
   },
   getters: {
     getItemCurrent: (state) => {
       return state.infoCurrent;
+    },
+
+    getUserCurrent: (state) => {
+      return state.username;
     }
   }
 })
+
+export default store;

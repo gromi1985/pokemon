@@ -32,7 +32,7 @@ export default {
       esActivateFocus:false,
       esActivateBlur:false,
       esActivateOninput:false,
-      mostrarSpan:false,
+      mostrarSpan:true,
 
       cadena:'',
       msgBlur:'',

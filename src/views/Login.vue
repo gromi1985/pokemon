@@ -8,7 +8,7 @@
       <h1>SIGN IN</h1>
       <form 
       id="signIn"
-      @submit="checkForm"
+      @submit.prevent="checkForm"
       novalidate
       action="#">
         <InputElement
@@ -33,7 +33,7 @@
 
         <input class="h-element" type="submit" value="Sign In" />
         <span class="errorLogin text-start" 
-               v-if="!flagUser && esActivateError">{{msgError}}</span>
+               v-if="!auth && esActivateError">{{msgError}}</span>
 
         <div id="remember-container">
           <span id="remember"> Need help signing in?</span>
@@ -71,7 +71,7 @@ export default {
     };
   },
   computed:{
-    ...mapState(['flagUser']),
+    ...mapState(['auth']),
   },
 
   methods: {
@@ -79,8 +79,8 @@ export default {
     goHome() {this.$router.push({name:'Home'})},
     goRegister(){this.$router.push({name:'Register'})},
     checkForm(e) {
-      let userPassword= document.querySelector('#field-8 input').value;
       let userMail= document.querySelector('#field-7 input').value;
+      let userPassword= document.querySelector('#field-8 input').value;
        e.preventDefault();
        this.userLogin.email = userMail;
        this.userLogin.password = userPassword;
@@ -90,9 +90,12 @@ export default {
           if(this.emailValidatePattern(this.userLogin.email)){
           
            this.LOGIN_USER(this.userLogin);
-           this.esActivateError = true;
-           if(this.esActivateError)
-           this.goHome();
+           if(this.auth){
+             this.goHome();
+           }
+
+           else
+             this.esActivateError = true;
           }
       }
       },
@@ -205,7 +208,7 @@ form > * {
   width: 100%;
   padding: 5px 5px;
   /* border:none; */
-  border: 2px solid #edd700;
+  border: 2px solid black;
 }
 .elementItem > label > span {
   position: absolute;
